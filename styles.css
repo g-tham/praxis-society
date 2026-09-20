@@ -169,7 +169,7 @@ footer{background:#071914;color:rgba(255,255,255,.42);height:86px;padding:0 4.5v
   .manifesto-main h2{font-size:49px;line-height:.93}
   .manifesto-copy blockquote{font-size:25px;line-height:1.18;padding:24px 0 0;margin-top:28px;border-top:1px solid var(--line)}
   .standard-banner{min-height:72svh;display:flex;align-items:center;padding:80px 23px;background:linear-gradient(155deg,#173d31,#0d2b22)}
-  .standard-banner p{font-size:clamp(36px,10.8vw,48px);line-height:1.04;letter-spacing:-.025em}
+  .standard-banner p{font-size:clamp(36px,10.8vw,48px);line-height:1.04;letter-spacing:-.025em;color:#d4be86}
   .standard-banner p span{color:#d4be86}
 
   /* PILLARS — swipeable editorial cards */
