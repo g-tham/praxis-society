@@ -314,34 +314,43 @@
 }
 
 
-/* ---------- Restore original white crest surround ---------- */
+/* ---------- Hero crest: clear white surround ---------- */
 .crest-stage::before{
   content:"";
   position:absolute;
-  width:min(78%,590px);
+  width:min(96%,620px);
   aspect-ratio:1;
   border-radius:50%;
-  background:linear-gradient(145deg,#fffdf8,#f3eddf);
-  box-shadow:0 30px 70px rgba(0,0,0,.22),inset 0 0 0 1px rgba(177,147,84,.20);
+  background:#fffdf8;
+  box-shadow:
+    0 32px 76px rgba(0,0,0,.24),
+    inset 0 0 0 1px rgba(177,147,84,.18);
   z-index:1;
 }
 .crest-stage::after{
   content:"";
   position:absolute;
-  width:min(70%,530px);
+  width:min(89%,565px);
   aspect-ratio:1;
   border-radius:50%;
   border:1px solid rgba(177,147,84,.28);
   z-index:2;
 }
-.hero-crest{z-index:4}
+.hero-crest{
+  z-index:4;
+}
+
+/* No swipe hint or arrow controls in Our Foundation */
+.pillar-swipe-hint{display:none!important}
+.pillar>i{display:none!important}
 
 @media(max-width:900px){
-  .crest-stage::before{width:min(86vw,500px)}
-  .crest-stage::after{width:min(78vw,455px)}
+  .crest-stage::before{width:min(92vw,540px)}
+  .crest-stage::after{width:min(84vw,490px)}
 }
 
 @media(max-width:720px){
-  .crest-stage::before{width:min(84vw,350px)}
-  .crest-stage::after{width:min(75vw,312px)}
+  .crest-stage::before{width:min(88vw,360px)}
+  .crest-stage::after{width:min(80vw,326px)}
+  .hero-crest{width:min(69vw,290px)!important}
 }
