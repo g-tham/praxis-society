@@ -312,3 +312,36 @@
   .hero-word,.service-number,.closing-word{transform:none!important}
   .closing-word{transform:translate(-50%,-51%)!important}
 }
+
+
+/* ---------- Restore original white crest surround ---------- */
+.crest-stage::before{
+  content:"";
+  position:absolute;
+  width:min(78%,590px);
+  aspect-ratio:1;
+  border-radius:50%;
+  background:linear-gradient(145deg,#fffdf8,#f3eddf);
+  box-shadow:0 30px 70px rgba(0,0,0,.22),inset 0 0 0 1px rgba(177,147,84,.20);
+  z-index:1;
+}
+.crest-stage::after{
+  content:"";
+  position:absolute;
+  width:min(70%,530px);
+  aspect-ratio:1;
+  border-radius:50%;
+  border:1px solid rgba(177,147,84,.28);
+  z-index:2;
+}
+.hero-crest{z-index:4}
+
+@media(max-width:900px){
+  .crest-stage::before{width:min(86vw,500px)}
+  .crest-stage::after{width:min(78vw,455px)}
+}
+
+@media(max-width:720px){
+  .crest-stage::before{width:min(84vw,350px)}
+  .crest-stage::after{width:min(75vw,312px)}
+}
