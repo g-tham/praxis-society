@@ -1,0 +1,314 @@
+/* =========================================================
+   PRAXIS MOTION SYSTEM V1
+   Supplemental animation layer. Core site styles remain in styles.css.
+   ========================================================= */
+
+:root{
+  --motion-ease:cubic-bezier(.16,1,.3,1);
+  --motion-gold:var(--gold-2,#d1b979);
+}
+
+/* ---------- Hero ceremony ---------- */
+.hero-title-line{display:block}
+.hero-title-line em{display:inline-block}
+
+.motion-v6:not(.motion-ready) .hero .kicker,
+.motion-v6:not(.motion-ready) .hero-title-primary,
+.motion-v6:not(.motion-ready) .hero-title-accent,
+.motion-v6:not(.motion-ready) .hero-lead,
+.motion-v6:not(.motion-ready) .hero-actions,
+.motion-v6:not(.motion-ready) .crest-stage{
+  opacity:0;
+}
+
+.motion-v6:not(.motion-ready) .hero .kicker{transform:translateY(12px)}
+.motion-v6:not(.motion-ready) .hero-title-primary,
+.motion-v6:not(.motion-ready) .hero-title-accent{transform:translateY(30px)}
+.motion-v6:not(.motion-ready) .hero-lead{transform:translateY(18px)}
+.motion-v6:not(.motion-ready) .hero-actions{transform:translateY(14px)}
+.motion-v6:not(.motion-ready) .crest-stage{transform:scale(.92) translateY(18px)}
+
+.motion-v6.motion-ready .hero .kicker{animation:praxisRise .72s .08s var(--motion-ease) both}
+.motion-v6.motion-ready .hero-title-primary{animation:praxisRise .88s .18s var(--motion-ease) both}
+.motion-v6.motion-ready .hero-title-accent{animation:praxisRise .92s .34s var(--motion-ease) both}
+.motion-v6.motion-ready .hero-lead{animation:praxisRise .82s .52s var(--motion-ease) both}
+.motion-v6.motion-ready .hero-actions{animation:praxisRise .78s .64s var(--motion-ease) both}
+.motion-v6.motion-ready .crest-stage{animation:praxisCrestEnter 1.15s .20s var(--motion-ease) both}
+
+.crest-sheen{
+  position:absolute;
+  z-index:6;
+  top:7%;
+  bottom:7%;
+  left:13%;
+  width:24%;
+  pointer-events:none;
+  opacity:0;
+  transform:translateX(-240%) skewX(-16deg);
+  background:linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,244,203,.02) 18%,
+    rgba(255,235,166,.36) 48%,
+    rgba(255,250,224,.12) 64%,
+    transparent 100%
+  );
+  filter:blur(7px);
+  mix-blend-mode:screen;
+  border-radius:50%;
+}
+.motion-v6.motion-ready .crest-sheen{
+  animation:crestSheen 1.15s 1.35s ease-in-out both;
+}
+
+/* ---------- Gold line reveals ---------- */
+.section-label{position:relative}
+.section-label::after{
+  content:"";
+  width:0;
+  height:1px;
+  margin-left:3px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+  opacity:.8;
+  transition:width .9s var(--motion-ease);
+}
+.section-label.line-drawn::after{width:48px}
+
+.closing-rule{
+  transform:scaleY(0);
+  transform-origin:top;
+  transition:transform 1s var(--motion-ease);
+}
+.closing-rule.line-drawn{transform:scaleY(1)}
+
+/* ---------- Six Pillars ---------- */
+.pillar .num,
+.pillar h3,
+.pillar i{
+  transition:transform .45s var(--motion-ease),opacity .35s ease,color .35s ease;
+}
+@media(min-width:721px){
+  .pillar:hover .num{transform:translateX(7px)}
+  .pillar:hover h3{transform:translateX(9px)}
+  .pillar:hover i{transform:translate(5px,-5px) rotate(7deg)}
+}
+@media(max-width:720px){
+  .pillar{
+    transform:scale(.965);
+    opacity:.76;
+    transition:transform .48s var(--motion-ease),opacity .35s ease,box-shadow .4s ease!important;
+  }
+  .pillar.active-card{
+    transform:scale(1);
+    opacity:1;
+    box-shadow:0 24px 48px rgba(20,31,25,.10)!important;
+  }
+}
+
+/* ---------- Membership journey ---------- */
+.journey-line::after{
+  width:100%!important;
+  transform:scaleX(0);
+  transform-origin:left center;
+  transition:transform 1.75s var(--motion-ease);
+}
+.journey.journey-play .journey-line::after{transform:scaleX(1)}
+
+.step b,
+.step span,
+.step small{
+  transition:transform .5s var(--motion-ease),color .4s ease,background .4s ease,box-shadow .4s ease,border-color .4s ease,opacity .4s ease;
+}
+.step.journey-active b{
+  background:var(--motion-gold);
+  color:#0a2119;
+  border-color:var(--motion-gold);
+  box-shadow:0 0 0 6px rgba(210,185,121,.10),0 0 28px rgba(210,185,121,.18);
+  transform:scale(1.08);
+}
+.step.journey-active span{transform:translateY(-2px);color:#fff}
+.step.journey-active small{color:rgba(255,255,255,.62)}
+
+@media(max-width:720px){
+  .journey-line::after{
+    width:1px!important;
+    height:100%;
+    transform:scaleY(var(--journey-progress,0));
+    transform-origin:center top;
+    transition:transform .12s linear;
+  }
+  .journey.journey-play .journey-line::after{
+    transform:scaleY(var(--journey-progress,0));
+  }
+  .step.journey-active::before{
+    background:var(--motion-gold)!important;
+    box-shadow:0 0 0 6px rgba(210,185,121,.12),0 0 25px rgba(210,185,121,.18)!important;
+  }
+  .step.journey-active b{
+    background:transparent;
+    border-color:transparent;
+    box-shadow:none;
+    color:var(--motion-gold);
+    transform:translateX(2px);
+  }
+}
+
+/* ---------- Institutional Life cards ---------- */
+.tradition-card::after{
+  content:"";
+  position:absolute;
+  inset:7px;
+  border:1px solid rgba(210,185,121,.82);
+  pointer-events:none;
+  opacity:0;
+  transform:scale(.975);
+  transition:opacity .45s ease,transform .65s var(--motion-ease);
+  z-index:3;
+}
+.tradition-card>span{
+  transition:transform .75s var(--motion-ease),color .55s ease,opacity .55s ease;
+}
+@media(min-width:721px){
+  .tradition-card:hover::after{opacity:1;transform:scale(1)}
+  .tradition-card:hover>span{
+    transform:translate(-12px,-9px);
+    color:rgba(210,185,121,.13);
+  }
+}
+@media(max-width:720px){
+  .tradition-card.card-in-view::after{opacity:.72;transform:scale(1)}
+  .tradition-card.card-in-view>span{
+    transform:translate(-8px,-5px);
+    color:rgba(210,185,121,.12);
+  }
+}
+
+/* ---------- Governance document interactions ---------- */
+.document-card{
+  position:relative;
+  overflow:hidden;
+  transition:transform .5s var(--motion-ease),box-shadow .5s ease,background .4s ease,color .4s ease;
+}
+.document-card>span b{
+  display:inline-block;
+  transition:transform .4s var(--motion-ease),color .35s ease;
+}
+@media(min-width:721px){
+  .document-card:hover{
+    box-shadow:inset 3px 0 0 var(--motion-gold),0 26px 50px rgba(18,37,29,.14);
+  }
+  .document-card:hover>span b{transform:translate(4px,-4px)}
+}
+@media(max-width:720px){
+  .document-card.doc-in-view{
+    transform:translateY(-3px);
+    box-shadow:inset 4px 0 0 var(--motion-gold),0 20px 40px rgba(18,37,29,.10)!important;
+  }
+  .document-card.doc-in-view>span b{transform:translate(3px,-3px)}
+}
+
+/* ---------- Parallax typography ---------- */
+.hero-word{
+  transform:translate3d(0,var(--parallax-y,0px),0);
+  will-change:transform;
+}
+.service-number{
+  transform:translate3d(0,var(--parallax-y,0px),0);
+  will-change:transform;
+}
+.closing-word{
+  transform:translate(-50%,calc(-51% + var(--parallax-y,0px)));
+  will-change:transform;
+}
+
+/* ---------- Closing ceremony ---------- */
+.closing .closing-crest.reveal{transition-delay:.02s}
+.closing>p.reveal:not(.closing-values){transition-delay:.14s}
+.closing h2.reveal{transition-delay:.25s}
+.closing .closing-values.reveal{transition-delay:.37s}
+.closing.closing-in-view .closing-crest{
+  filter:drop-shadow(0 18px 30px rgba(16,45,36,.10));
+}
+.closing.closing-in-view h2{
+  text-shadow:0 10px 35px rgba(16,45,36,.06);
+}
+
+/* ---------- Header refinement ---------- */
+.site-header,
+.brand,
+.brand img,
+.brand span,
+.desktop-nav{
+  transition:
+    height .45s var(--motion-ease),
+    padding .45s var(--motion-ease),
+    gap .45s var(--motion-ease),
+    transform .45s var(--motion-ease),
+    opacity .35s ease,
+    background .35s ease,
+    box-shadow .35s ease;
+}
+.site-header.scrolled .brand img{transform:scale(.88)}
+.site-header.scrolled .brand{gap:10px}
+.site-header.scrolled .desktop-nav{transform:translateY(-1px)}
+
+/* ---------- Keyframes ---------- */
+@keyframes praxisRise{
+  from{opacity:0;transform:translateY(28px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes praxisCrestEnter{
+  0%{opacity:0;transform:scale(.91) translateY(22px)}
+  70%{opacity:1;transform:scale(1.015) translateY(-2px)}
+  100%{opacity:1;transform:scale(1) translateY(0)}
+}
+@keyframes crestSheen{
+  0%{opacity:0;transform:translateX(-240%) skewX(-16deg)}
+  18%{opacity:1}
+  78%{opacity:.82}
+  100%{opacity:0;transform:translateX(440%) skewX(-16deg)}
+}
+
+/* ---------- Mobile performance tuning ---------- */
+@media(max-width:720px){
+  .crest-sheen{top:10%;bottom:10%;left:8%;width:30%;filter:blur(6px)}
+  .section-label.line-drawn::after{width:34px}
+  .service-number{will-change:auto}
+  .hero-word,.closing-word{will-change:transform}
+}
+
+/* ---------- Accessibility ---------- */
+@media(prefers-reduced-motion:reduce){
+  .motion-v6:not(.motion-ready) .hero .kicker,
+  .motion-v6:not(.motion-ready) .hero-title-primary,
+  .motion-v6:not(.motion-ready) .hero-title-accent,
+  .motion-v6:not(.motion-ready) .hero-lead,
+  .motion-v6:not(.motion-ready) .hero-actions,
+  .motion-v6:not(.motion-ready) .crest-stage{
+    opacity:1!important;
+    transform:none!important;
+  }
+  .motion-v6.motion-ready .hero .kicker,
+  .motion-v6.motion-ready .hero-title-primary,
+  .motion-v6.motion-ready .hero-title-accent,
+  .motion-v6.motion-ready .hero-lead,
+  .motion-v6.motion-ready .hero-actions,
+  .motion-v6.motion-ready .crest-stage,
+  .motion-v6.motion-ready .crest-sheen{
+    animation:none!important;
+  }
+  .section-label::after,
+  .closing-rule,
+  .journey-line::after,
+  .pillar,
+  .tradition-card,
+  .tradition-card::after,
+  .tradition-card>span,
+  .document-card,
+  .document-card>span b,
+  .step b,.step span,.step small{
+    transition:none!important;
+  }
+  .hero-word,.service-number,.closing-word{transform:none!important}
+  .closing-word{transform:translate(-50%,-51%)!important}
+}
