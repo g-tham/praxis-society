@@ -52,7 +52,11 @@ button{font:inherit}
 .hero-lead{max-width:650px;font-size:16px;line-height:1.8;color:rgba(255,255,255,.65);margin:40px 0 38px}
 .hero-actions{display:flex;align-items:center;gap:36px}.btn{display:inline-flex;align-items:center;justify-content:space-between;min-width:205px;padding:17px 19px;font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase}.btn i{font-style:normal;font-size:16px}.btn-gold{background:var(--gold-2);color:#0a2119;transition:.25s}.btn-gold:hover{background:#e1ce98;transform:translateY(-2px)}
 .text-link{font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.7);display:flex;gap:12px}.text-link span{color:var(--gold-2)}
-.crest-stage{position:relative;height:min(70vh,700px);display:flex;align-items:center;justify-content:center;z-index:2}.hero-crest{width:min(86%,540px);position:relative;z-index:3;filter:drop-shadow(0 28px 40px rgba(0,0,0,.35))}.crest-halo{position:absolute;width:64%;aspect-ratio:1;border-radius:50%;background:rgba(177,147,84,.10);filter:blur(45px)}
+.crest-stage{position:relative;height:min(70vh,700px);display:flex;align-items:center;justify-content:center;z-index:2}
+.crest-stage::before{content:"";position:absolute;width:min(78%,590px);aspect-ratio:1;border-radius:50%;background:linear-gradient(145deg,#fffdf8,#f3eddf);box-shadow:0 30px 70px rgba(0,0,0,.22),inset 0 0 0 1px rgba(177,147,84,.20);z-index:1}
+.crest-stage::after{content:"";position:absolute;width:min(70%,530px);aspect-ratio:1;border-radius:50%;border:1px solid rgba(177,147,84,.28);z-index:2}
+.hero-crest{width:min(73%,500px);position:relative;z-index:4;filter:drop-shadow(0 18px 26px rgba(0,0,0,.16))}
+.crest-halo{position:absolute;width:62%;aspect-ratio:1;border-radius:50%;background:rgba(177,147,84,.10);filter:blur(45px);z-index:0}
 .orbit{position:absolute;border:1px solid rgba(210,185,121,.17);border-radius:50%;aspect-ratio:1}.orbit-one{width:83%;animation:spin 38s linear infinite}.orbit-two{width:65%;border-style:dashed;animation:spinReverse 52s linear infinite}.orbit::before{content:"";position:absolute;width:7px;height:7px;border-radius:50%;background:var(--gold-2);top:14%;left:17%;box-shadow:0 0 20px rgba(210,185,121,.65)}
 .crest-caption{position:absolute;right:3%;bottom:4%;display:flex;flex-direction:column;gap:7px;padding-left:15px;border-left:1px solid var(--gold);font-size:8px;letter-spacing:.2em}.crest-caption span{color:rgba(255,255,255,.43)}.crest-caption b{font-size:9px;color:var(--gold-2)}
 .scroll-note{position:absolute;left:4.5vw;bottom:30px;display:flex;align-items:center;gap:15px;font-size:8px;letter-spacing:.25em;color:rgba(255,255,255,.35)}.scroll-note i{display:block;width:70px;height:1px;background:rgba(255,255,255,.2);position:relative;overflow:hidden}.scroll-note i::after{content:"";position:absolute;width:20px;height:1px;background:var(--gold-2);animation:scan 2.3s ease-in-out infinite}
@@ -101,3 +105,10 @@ footer{background:#071914;color:rgba(255,255,255,.42);height:86px;padding:0 4.5v
 }
 
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.orbit,.scroll-note i::after{animation:none!important}.reveal{opacity:1;transform:none;transition:none}}
+
+.crest-stage .orbit{border-color:rgba(210,185,121,.22)}
+@media(max-width:900px){
+  .crest-stage::before{width:min(86vw,500px)}
+  .crest-stage::after{width:min(78vw,455px)}
+  .hero-crest{width:min(72vw,420px)}
+}
