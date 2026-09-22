@@ -1,29 +1,33 @@
-# The Praxis Society — Website v2
+# The Praxis Society
 
-Premium static website for The Praxis Society, Calgary, Alberta.
+Official website for The Praxis Society.
 
-## Run locally
-Open `index.html` directly, or from this folder run:
+The site is a static one-page website built for GitHub Pages and uses standard HTML, CSS, and JavaScript.
+
+## Local development
+
+You can open `index.html` directly, or run a simple local server:
 
 ```bash
 python -m http.server 8000
 ```
 
-Then visit `http://localhost:8000`.
+Then open:
 
-## Included
-- Responsive one-page website
-- Mobile navigation
-- Scroll reveal animations
-- Transparent official Praxis crest
-- Founding Charter & Constitution
-- Bylaws & Governance Code
-- Membership & Traditions Code
-- Prospective Member Guide
-- Candidate Acknowledgement & Commitment
+`http://localhost:8000`
 
-## Notes
-- Document 3 is the final approved master.
-- `founding-charter.pdf` currently uses the provisional Document 1 Option A version. Confirm the final preamble treatment before public launch.
-- No email address or social links have been invented. Add official channels when established.
-- Static deployment works on GitHub Pages, Netlify, Cloudflare Pages, or similar hosting without a build step.
+## Repository structure
+
+- `index.html` — main website
+- `styles.css` — core site styling
+- `animations.css` — additional motion and animation styles
+- `script.js` — main site interactions
+- `animations.js` — animation behaviour
+- `assets/` — logo, favicon, and social preview images
+- `documents/` — Society documents and membership materials
+
+## Deployment
+
+The site is deployed through GitHub Pages and uses the custom domain:
+
+`praxissociety.xyz`
