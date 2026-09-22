@@ -3,6 +3,15 @@ const menu = document.querySelector('.menu-button');
 const mobileNav = document.querySelector('.mobile-nav');
 const mobileDock = document.querySelector('.mobile-dock');
 
+const routeMap = {
+  home: 'home',
+  about: 'about',
+  pillars: 'pillars',
+  membership: 'membership',
+  traditions: 'traditions',
+  governance: 'governance'
+};
+
 const setHeader = () => {
   header.classList.toggle('scrolled', window.scrollY > 35);
   if (mobileDock) mobileDock.classList.toggle('visible', window.scrollY > Math.min(520, window.innerHeight * 0.62));
@@ -29,6 +38,54 @@ document.querySelectorAll('.mobile-nav a').forEach(link => link.addEventListener
   document.body.style.overflow = '';
 }));
 
+const scrollToRoute = (route, smooth = true) => {
+  const sectionId = routeMap[route];
+  const section = sectionId ? document.getElementById(sectionId) : null;
+  if (!section) return;
+
+  section.scrollIntoView({
+    behavior: smooth && !window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'smooth' : 'auto',
+    block: 'start'
+  });
+};
+
+document.querySelectorAll('[data-route]').forEach(link => {
+  link.addEventListener('click', event => {
+    const route = link.dataset.route;
+    if (!routeMap[route]) return;
+
+    event.preventDefault();
+    const path = route === 'home' ? '/' : `/${route}`;
+
+    if (window.location.pathname !== path) {
+      history.pushState({ route }, '', path);
+    }
+
+    scrollToRoute(route);
+  });
+});
+
+window.addEventListener('popstate', () => {
+  const route = window.location.pathname.replace(/^\/+|\/+$/g, '') || 'home';
+  scrollToRoute(route, false);
+});
+
+const redirectRoute = new URLSearchParams(window.location.search).get('route');
+const pathRoute = window.location.pathname.replace(/^\/+|\/+$/g, '');
+const initialRoute = redirectRoute && routeMap[redirectRoute]
+  ? redirectRoute
+  : (routeMap[pathRoute] ? pathRoute : 'home');
+
+if (redirectRoute && routeMap[redirectRoute]) {
+  history.replaceState({ route: redirectRoute }, '', `/${redirectRoute}`);
+}
+
+if (initialRoute !== 'home') {
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => scrollToRoute(initialRoute, false));
+  });
+}
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -49,8 +106,6 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   }, { passive: true });
 }
 
-
-// Mobile dock collapses while the full-screen menu is open.
 if (mobileDock) {
   mobileDock.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
     mobileDock.classList.remove('visible');
