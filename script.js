@@ -112,3 +112,7 @@ if (mobileDock) {
     setTimeout(setHeader, 450);
   }));
 }
+
+
+// Built by R3Synergy Inc.
+const siteBuildCredit = 'Built by R3Synergy Inc.';
