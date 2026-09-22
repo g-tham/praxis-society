@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>The Praxis Society</title>
+</head>
+<body>
+  <script>
+    (function () {
+      var route = window.location.pathname.replace(/^\\/+|\\/+$/g, '');
+      var allowed = ['about', 'pillars', 'membership', 'traditions', 'governance'];
+      var target = allowed.indexOf(route) !== -1
+        ? '/?route=' + encodeURIComponent(route)
+        : '/';
+      window.location.replace(target);
+    }());
+  </script>
+</body>
+</html>
