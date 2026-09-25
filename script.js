@@ -116,3 +116,59 @@ if (mobileDock) {
 
 // Built by R3Synergy Inc.
 const siteBuildCredit = 'Built by R3Synergy Inc.';
+
+
+// Keep primary navigation in sync with the section currently in view.
+const sectionRoutes = ['about', 'pillars', 'membership', 'traditions', 'governance'];
+const sectionNavLinks = document.querySelectorAll('.desktop-nav [data-route], .mobile-nav [data-route]');
+const routeSections = sectionRoutes
+  .map(route => document.getElementById(route))
+  .filter(Boolean);
+
+let activeNavRoute = null;
+let activeNavTicking = false;
+
+const setActiveNav = route => {
+  if (route === activeNavRoute) return;
+  activeNavRoute = route;
+
+  sectionNavLinks.forEach(link => {
+    const active = link.dataset.route === route;
+    link.classList.toggle('active', active);
+    if (active) {
+      link.setAttribute('aria-current', 'page');
+    } else {
+      link.removeAttribute('aria-current');
+    }
+  });
+};
+
+const updateActiveNav = () => {
+  const aboutSection = document.getElementById('about');
+  if (!aboutSection) return;
+
+  const marker = window.scrollY + Math.min(window.innerHeight * 0.34, 260);
+  let currentRoute = null;
+
+  if (marker >= aboutSection.offsetTop) {
+    routeSections.forEach(section => {
+      if (marker >= section.offsetTop) currentRoute = section.id;
+    });
+  }
+
+  setActiveNav(currentRoute);
+};
+
+const requestActiveNavUpdate = () => {
+  if (activeNavTicking) return;
+  activeNavTicking = true;
+
+  requestAnimationFrame(() => {
+    updateActiveNav();
+    activeNavTicking = false;
+  });
+};
+
+window.addEventListener('scroll', requestActiveNavUpdate, { passive: true });
+window.addEventListener('resize', requestActiveNavUpdate);
+updateActiveNav();
